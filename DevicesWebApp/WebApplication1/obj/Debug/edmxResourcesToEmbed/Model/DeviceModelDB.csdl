@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DevicesDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Device">
+    <Key>
+      <PropertyRef Name="DeviceId" />
+    </Key>
+    <Property Name="DeviceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeviceName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UsageDescription" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="Temperature" Type="Int32" />
+    <NavigationProperty Name="DeviceRelations" Relationship="Self.FK_DeviceRelation_DeviceId" FromRole="Device" ToRole="DeviceRelation" />
+    <NavigationProperty Name="RelatedDevices" Relationship="DevicesDBModel.FK_DeviceRelation_RelatedDeviceId1" FromRole="Device" ToRole="DeviceRelation" />
+    <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="DeviceRelation">
+    <Key>
+      <PropertyRef Name="DeviceRelationId" />
+    </Key>
+    <Property Name="DeviceRelationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeviceId" Type="Int32" Nullable="false" />
+    <Property Name="RelatedDeviceId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Device" Relationship="Self.FK_DeviceRelation_DeviceId" FromRole="DeviceRelation" ToRole="Device" />
+    <NavigationProperty Name="RelatedDevice" Relationship="DevicesDBModel.FK_DeviceRelation_RelatedDeviceId1" FromRole="DeviceRelation" ToRole="Device" />
+  </EntityType>
+  <Association Name="FK_DeviceRelation_DeviceId">
+    <End Role="Device" Type="Self.Device" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DeviceRelation" Type="Self.DeviceRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Device">
+        <PropertyRef Name="DeviceId" />
+      </Principal>
+      <Dependent Role="DeviceRelation">
+        <PropertyRef Name="DeviceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeviceRelation_RelatedDeviceId">
+    <End Role="Device" Type="Self.Device" Multiplicity="1" />
+    <End Role="DeviceRelation" Type="Self.DeviceRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Device">
+        <PropertyRef Name="DeviceId" />
+      </Principal>
+      <Dependent Role="DeviceRelation">
+        <PropertyRef Name="DeviceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Devices" EntityType="Self.Device" />
+    <EntitySet Name="DeviceRelations" EntityType="Self.DeviceRelation" />
+    <AssociationSet Name="FK_DeviceRelation_DeviceId" Association="Self.FK_DeviceRelation_DeviceId">
+      <End Role="Device" EntitySet="Devices" />
+      <End Role="DeviceRelation" EntitySet="DeviceRelations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeviceRelation_RelatedDeviceId" Association="Self.FK_DeviceRelation_RelatedDeviceId">
+      <End Role="Device" EntitySet="Devices" />
+      <End Role="DeviceRelation" EntitySet="DeviceRelations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeviceRelation_RelatedDeviceId1" Association="DevicesDBModel.FK_DeviceRelation_RelatedDeviceId1">
+      <End Role="Device" EntitySet="Devices" />
+      <End Role="DeviceRelation" EntitySet="DeviceRelations" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_DeviceRelation_RelatedDeviceId1">
+    <End Type="DevicesDBModel.Device" Role="Device" Multiplicity="1" />
+    <End Type="DevicesDBModel.DeviceRelation" Role="DeviceRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Device">
+        <PropertyRef Name="DeviceId" />
+      </Principal>
+      <Dependent Role="DeviceRelation">
+        <PropertyRef Name="RelatedDeviceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

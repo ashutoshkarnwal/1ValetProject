@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DevicesDBModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Devices">
+      <EntityTypeMapping TypeName="DevicesDBModel.Device">
+        <MappingFragment StoreEntitySet="Device">
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+          <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+          <ScalarProperty Name="UsageDescription" ColumnName="UsageDescription" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeviceRelations">
+      <EntityTypeMapping TypeName="DevicesDBModel.DeviceRelation">
+        <MappingFragment StoreEntitySet="DeviceRelation">
+          <ScalarProperty Name="DeviceRelationId" ColumnName="DeviceRelationId" />
+          <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+          <ScalarProperty Name="RelatedDeviceId" ColumnName="RelatedDeviceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
