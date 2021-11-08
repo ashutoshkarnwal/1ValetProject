@@ -1,0 +1,25 @@
+
+  <div class="container">
+    <app-search-box ></app-search-box>
+    <div class="row col-sm-12">
+      <div class="card col-sm-6" *ngIf="IsListVisible">
+        <label class="deviceMessage">{{listOfDevices}}</label>
+        <app-device-list [source]="DevicesList"></app-device-list>
+      </div>
+      <div class="message" *ngIf="!IsListVisible">
+        <h3>{{noRelatedDeviceLabel}}</h3>
+      </div>
+      <div class="card col-sm-6">
+        <div>
+          <img src="assets/devices-icons/{{Device.image}}" alt="Card image cap">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{Device.deviceName}}</h5>
+          <p class="card-text">Status : {{Device.status}}</p>
+          <p class="card-text">Usage : {{Device.usageDescription}}</p>
+          <p class="card-text">Temperature : {{Device.temperature}}</p>
+          <img src="assets/special-icons/histogram.png" alt="Card image cap">
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,39 @@
+.deviceDetails {
+  margin: 30px auto;
+}
+
+  .deviceDetails .secondCard {
+    position: relative;
+    top:50px;
+    left: 0;
+  }
+
+.deviceMessage {
+  position: relative;
+  top: 20px;
+  left: 0;
+  font-display:block;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.message {
+  position: relative;
+}
+
+.container {
+  border: 0;
+  outline: none;
+}
+
+  .container .row {
+    border: 0;
+    outline: none;
+    text-align: center;
+    margin: 30px auto;
+  }
+
+  .container .row .card{
+    border: 0;
+    border-radius:5px;
+    margin: 30px auto;
+  }

@@ -1,0 +1,10 @@
+<div class="container">
+  <app-search-box (changeText)="onChange($event)"></app-search-box>
+  <div *ngIf="IsListVisible">
+    <h5 class="deviceMessage">{{title}}</h5>
+    <app-device-list [source]="DevicesList" (deviceSelect)="deviceDetail($event)"></app-device-list>
+  </div>
+  <div class="message" *ngIf="!IsListVisible">
+    <h3>{{noDeviceFoundLabel}}</h3>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="search_wrap search_wrap_specific">
+    <div class="search_box">
+      <div class="btn btn-common">
+        <fa-icon class="fas" icon="search"></fa-icon>
+      </div>
+      <input class="input" [(ngModel)]="search" required type="text" placeholder="Search" (ngModelChange)="onChange($event)" aria-label="Search" />
+      <div class="btnRight btnRight-common" on-click="clickCancel()">{{cancelLabel}}</div>
+    </div>
+  </div>
+</div>
