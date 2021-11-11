@@ -8,8 +8,15 @@ using WebApplication1.Repository.Interface;
 
 namespace WebApplication1.Repository
 {
+    /// <summary>
+    /// Repository for devices
+    /// </summary>
     public class DeviceRepository : IDeviceRepository
     {
+        /// <summary>
+        /// Get the list of all devices from database
+        /// </summary>
+        /// <returns></returns>
         public List<Device> GetAllDevices()
         {
             var devices = new List<Device>();
@@ -21,6 +28,11 @@ namespace WebApplication1.Repository
             }
         }
 
+        /// <summary>
+        /// Get the detail of selected device. Also related devices with it
+        /// </summary>
+        /// <param name="deviceId">Selected Device Id</param>
+        /// <returns></returns>
         public DetailDevice GetRelatedDevices(int deviceId)
         {
             var devices = new List<Device>();

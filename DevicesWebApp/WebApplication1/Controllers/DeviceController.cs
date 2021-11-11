@@ -15,7 +15,10 @@ using WebApplication1.Services;
 using WebApplication1.Services.Interface;
 
 namespace WebApplication1.Controllers
-{
+{   
+    /// <summary>
+    /// Device Controller
+    /// </summary>
     public class DeviceController: ApiController
     {
         private IDeviceService _deviceService;
@@ -27,6 +30,7 @@ namespace WebApplication1.Controllers
         [Route("api/Device/GetDevices")]
         [HttpGet]
         [BasicAuthentication]
+        ///<summary>Get the List of all devices</summary>
         public HttpResponseMessage GetDevices()
         {
             try
@@ -54,6 +58,8 @@ namespace WebApplication1.Controllers
         [Route("api/Device/GetRelatedDevices")]
         [HttpGet]
         [BasicAuthentication]
+        ///<summary>Get Detail of a particular selected device and all devices which are related to it</summary>
+        ///<param name="id">It is the id of a selected Device</param>
         public HttpResponseMessage GetRelatedDevices(int id)
         {
             try
